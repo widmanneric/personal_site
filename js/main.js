@@ -1,12 +1,20 @@
-
+var resizeTimeout;
+var isReducedSize = false;
 
 $(document).ready(()=>{
 	$('.scrollArrow').hide();
+	checkScreenSize();
 	applyControls();
-	console.log('in');
 });
 
 
+
+function checkScreenSize(){
+	let w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+	if(w <= 450)
+		isReducedSize = true;
+
+}
 
 
 function applyControls(){
@@ -14,7 +22,7 @@ function applyControls(){
 
 	$('.waveTarget').on('mouseenter',async function(){
 	
-		if($(this).hasClass('lock'))
+		if($(this).hasClass('lock') || isReducedSize)
 			return;
 		let spans = $(this).find('span');
 		let colorI = 0;
@@ -23,6 +31,10 @@ function applyControls(){
 		}
 		
 	});
+
+	$('.waveTarget').on('click touch',function(){
+		$(this).mouseleave();
+	});	
 
 	$('.option').on('click touch',function(){
 		if($(this).hasClass('lock') || $(this).hasClass('blocklock'))
@@ -52,11 +64,13 @@ function applyControls(){
 
 
 		if(isFirstScreen){
+
 			// $('.sidebar').scrollTop(40000);
 			// $('.sidebar').scrollTop(0);
 			setTimeout(function(block){
+				//$(window).resize();
 				animateOption(block);
-			},2500,$(this).find('.block'));
+			},2800,$(this).find('.block'));
 		}
 		else
 			animateOption($(this).find('.block'));
@@ -76,21 +90,29 @@ function applyControls(){
 		let currScroll = ele[0].scrollTop;
 		//console.log("triggered");
 		//console.log(Math.abs(maxScroll-currScroll));
-		if(Math.abs(maxScroll-currScroll)<10 || maxScroll <= 10){
+		if(Math.abs(maxScroll-currScroll)<20 || maxScroll <= 20){
 			//console.log('in2');
 			$('.scrollArrow').fadeOut();
 		}
 		else
 			$('.scrollArrow').fadeIn();
 	});
-	$(window).on('resize',()=>{
-		$('.sidebar').each(function(){
-			let ele = $(this);
-			if(ele[0].scrollTopMax<=10)
+
+
+	$(window).on('resize',(ev)=>{
+		clearTimeout(resizeTimeout);
+		checkScreenSize();
+		resizeTimeout = setTimeout(()=>{
+			console.log('resizeend');
+			let ele = $('.sidebar:not(.mini)');
+
+			if(ele[0].scrollTopMax<=20)
 				$('.scrollArrow').fadeOut();
 			else
 				$('.scrollArrow').fadeIn();
-		})
+			
+		},500);
+	
 	})
 
 
@@ -113,20 +135,28 @@ function phaseOutMainMenu(){
 
 
 		let menu = $('.mainMenu');
+		let xMovement = "146%";
+		let yMovement = "135%";
+		let scale = '.5'
+		if(isReducedSize){
+			xMovement= '0%';
+			yMovement="114%";
+			scale = '.55';
+		} 
 		
 		const duration = 800;
 	
 
 		menu.velocity({
-			scale : '.5'
+			scale : scale
 		},
 		{
 			duration : duration,
 			easing : 'swing',
 		})
 		.velocity({
-			translateX : '146%',
-			translateY : "135%"
+			translateX : xMovement,
+			translateY : yMovement
 		},{
 			easing : 'swing',
 			duration : duration,
@@ -221,34 +251,49 @@ function animateSpan(aspan,target){
 }
 
 function animateOption(ele){
-	const duration = 500;
+	const duration = 200;
+	let easing = 'swing';
+	let targetWidth = '4';
+	if(isReducedSize){
+		targetWidth = '3';
+		easing = 'linear';
+	}
 	return new Promise((resolve,reject)=>{
+	
 		$('.unanimateTarget .block').velocity({
-			width : '20px'
+			scaleX : '1',
 		},{
-			easing : 'swing',
+			easing : easing,
 			duration : duration,
 			complete : ()=>{
 				$('.unanimateTarget').removeClass('blocklock');
 				$('.unanimateTarget').removeClass('unanimateTarget');
-
 			}
 		});
 		ele.velocity({
-			width : '60px'
+			scaleX : targetWidth,
 		},{
-			easing : 'swing',
+			easing : easing,
 			duration : duration,
-			complete : ()=>{
-				resolve();
-			}
+			complete : resolve
 		});
-	});
+
+
+	})
+
 }
 
 
 function transitionPage(ele){
 	ele.scrollTop(0);
+	let duration = 1000;
+
+	if(isReducedSize){
+		$('.sidebar:not(.mini)').addClass('mini');
+		ele.removeClass('mini');
+		return;
+	}
+
 	$('.scrollArrow').fadeOut();
 	new Promise((res,rej)=>{
 		$('.sidebar:not(.mini)').velocity({
@@ -267,6 +312,7 @@ function transitionPage(ele){
 			$('.scrollArrow').fadeIn();
 
 		let oldele = $('.sidebar:not(.mini)');
+
 		oldele.addClass('mini');
 		ele.removeClass('mini');
 		setTimeout(()=>{
@@ -307,6 +353,7 @@ function transitionPage(ele){
     });
 }
 )(Element.prototype);
+
 
 
 
