@@ -175,8 +175,8 @@ body{
 		font-size: 12px;
 	}
 	.sidebar{
-		top: 46%;
-    	height: 72%;
+		top: 42%;
+    	height: 65%;
 	}
 	.scrollArrow{
 		bottom: -500%;
@@ -189,6 +189,7 @@ body{
 		top: 50%;
 		transform : translateY(-50%);*/
 	}
+
 }
 
 
