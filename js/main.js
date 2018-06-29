@@ -140,8 +140,8 @@ function phaseOutMainMenu(){
 		let scale = '.5'
 		if(isReducedSize){
 			xMovement= '0%';
-			yMovement="71vh";
-			scale = '.55';
+			yMovement="59vh";
+			scale = '.7';
 		} 
 		
 		const duration = 800;
