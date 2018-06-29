@@ -20,6 +20,7 @@ body{
 	align-items: center;
 	justify-content: flex-start;
 	overflow-y: hidden;
+	overflow-x: hidden;
 
 }
 .name{
@@ -185,7 +186,7 @@ body{
 	}
 	.mainMenu{
 		width: 80%;
-		
+
 	/*	position: absolute;
 		top: 50%;
 		transform : translateY(-50%);*/
