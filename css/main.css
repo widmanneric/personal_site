@@ -175,7 +175,7 @@ body{
 		font-size: 12px;
 	}
 	.sidebar{
-		top: 42.5%;
+		top: 43%;
     	height: 65%;
 	}
 	.scrollArrow{
@@ -184,12 +184,11 @@ body{
 
 	}
 	.mainMenu{
-		width: 60%;
+		width: 80%;
 	/*	position: absolute;
 		top: 50%;
 		transform : translateY(-50%);*/
 	}
-
 }
 
 
