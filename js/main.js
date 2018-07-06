@@ -1,11 +1,27 @@
 var resizeTimeout;
 var isReducedSize = false;
+var lockControls = false;
 
 $(document).ready(()=>{
 	$('.scrollArrow').hide();
 	checkScreenSize();
 	applyControls();
 });
+
+var showTimeout;
+function checkArrow(ele){
+		clearTimeout(showTimeout);
+		let maxScroll = ele[0].scrollTopMax;
+		let currScroll = ele[0].scrollTop;
+		// console.log(maxScroll-currScroll);
+		if(Math.abs(maxScroll-currScroll)<20 || maxScroll <= 20)
+			$('.scrollArrow').fadeOut();
+		else
+			showTimeout = setTimeout(()=>$('.scrollArrow').fadeIn(),500);
+		
+			
+		
+}
 
 
 
@@ -18,7 +34,7 @@ function checkScreenSize(){
 
 
 function applyControls(){
-
+	// let optionsLocked = false;
 
 	$('.waveTarget').on('mouseenter',async function(){
 	
@@ -37,8 +53,10 @@ function applyControls(){
 	});	
 
 	$('.option').on('click touch',function(){
-		if($(this).hasClass('lock') || $(this).hasClass('blocklock'))
+		console.log(lockControls);
+		if($(this).hasClass('lock') || $(this).hasClass('blocklock') || lockControls)
 			return;
+
 		let ele = $(this);
 		let isFirstScreen = !$('.mainMenu').attr('style');
 		if(isFirstScreen){
@@ -46,16 +64,16 @@ function applyControls(){
 			.then(()=>{
 				$(`.${ele.attr('target')}`).removeClass('mini');
 				$('.scrollArrow').removeClass('mini');
+				checkArrow($(`.${ele.attr('target')}`));
 			});
 		}
 		else{
-
 			transitionPage($(`.${ele.attr('target')}`));
 		}
 	});
 
 	$('.option').on('click touch',function(){
-		if($(this).hasClass('blocklock'))
+		if($(this).hasClass('blocklock') || lockControls)
 			return;
 		$('.blocklock').addClass('unanimateTarget');
 		$(this).addClass('blocklock');
@@ -64,9 +82,6 @@ function applyControls(){
 
 
 		if(isFirstScreen){
-
-			// $('.sidebar').scrollTop(40000);
-			// $('.sidebar').scrollTop(0);
 			setTimeout(function(block){
 				//$(window).resize();
 				animateOption(block);
@@ -74,7 +89,7 @@ function applyControls(){
 		}
 		else
 			animateOption($(this).find('.block'));
-
+		lockControls = true;
 		// .then()
 
 		// }
@@ -86,16 +101,7 @@ function applyControls(){
 	//let scrollHeights = calculateScrollHeights();
 	$('.sidebar').on('scroll',function(e){
 		let ele = $(this);
-		let maxScroll = ele[0].scrollTopMax;
-		let currScroll = ele[0].scrollTop;
-		//console.log("triggered");
-		//console.log(Math.abs(maxScroll-currScroll));
-		if(Math.abs(maxScroll-currScroll)<20 || maxScroll <= 20){
-			//console.log('in2');
-			$('.scrollArrow').fadeOut();
-		}
-		else
-			$('.scrollArrow').fadeIn();
+		checkArrow(ele);
 	});
 
 
@@ -131,6 +137,7 @@ function applyControls(){
 
 function phaseOutMainMenu(){
 	$('.control').off('mouseenter click touch');
+	lockControls = true;
 	return new Promise((resolve,reject)=>{
 
 
@@ -163,6 +170,7 @@ function phaseOutMainMenu(){
 			complete : ()=>{
 				applyControls();
 				resolve();
+				lockControls = false;
 			}
 		});
 
@@ -287,7 +295,7 @@ function animateOption(ele){
 function transitionPage(ele){
 	ele.scrollTop(0);
 	let duration = 1000;
-
+	// lockControls = true;
 	if(isReducedSize){
 		$('.sidebar:not(.mini)').addClass('mini');
 		ele.removeClass('mini');
@@ -305,11 +313,9 @@ function transitionPage(ele){
 		})	
 	})
 	.then(()=>{
-	
-		if(ele[0].scrollTopMax<=10)
-			$('.scrollArrow').fadeOut();
-		else
-			$('.scrollArrow').fadeIn();
+		checkArrow(ele);
+		lockControls = false;
+
 
 		let oldele = $('.sidebar:not(.mini)');
 
@@ -322,17 +328,7 @@ function transitionPage(ele){
 	})
 }
 
-//__________________________helpers
-// function calculateScrollHeights(){
-// 	let scrollHeights = {}
-// 	$('.sidebar').each(function(){
-// 		let ele = $(this);
-// 		let section = $(this).attr('section');
-// 		ele.scrollTop(40000);
-// 		scrollHeights[section] = ele.scrollTop();
-// 	})
-// 	return scrollHeights;
-// }
+
 
 
 (function(elmProto){
