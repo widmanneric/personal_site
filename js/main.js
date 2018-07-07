@@ -53,7 +53,7 @@ function applyControls(){
 	});	
 
 	$('.option').on('click touch',function(){
-		console.log(lockControls);
+
 		if($(this).hasClass('lock') || $(this).hasClass('blocklock') || lockControls)
 			return;
 
@@ -87,9 +87,11 @@ function applyControls(){
 				animateOption(block);
 			},2800,$(this).find('.block'));
 		}
-		else
+		else{
 			animateOption($(this).find('.block'));
-		lockControls = true;
+			// lockControls = true;
+		}
+		
 		// .then()
 
 		// }
@@ -137,7 +139,7 @@ function applyControls(){
 
 function phaseOutMainMenu(){
 	$('.control').off('mouseenter click touch');
-	lockControls = true;
+	// lockControls = true;
 	return new Promise((resolve,reject)=>{
 
 
@@ -169,8 +171,8 @@ function phaseOutMainMenu(){
 			duration : duration,
 			complete : ()=>{
 				applyControls();
-				resolve();
 				lockControls = false;
+				resolve();
 			}
 		});
 
@@ -274,6 +276,7 @@ function animateOption(ele){
 			easing : easing,
 			duration : duration,
 			complete : ()=>{
+				lockControls = false;
 				$('.unanimateTarget').removeClass('blocklock');
 				$('.unanimateTarget').removeClass('unanimateTarget');
 			}
@@ -314,7 +317,7 @@ function transitionPage(ele){
 	})
 	.then(()=>{
 		checkArrow(ele);
-		lockControls = false;
+		// lockControls = false;
 
 
 		let oldele = $('.sidebar:not(.mini)');
