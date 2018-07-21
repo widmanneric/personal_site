@@ -124,7 +124,7 @@ body{
 
 .scrollArrow{
 	position: absolute;
-	bottom : 14%;
+	bottom : 12.9%;
 	transition: transform;
 	transition-duration: 1s;
 
