@@ -39,7 +39,7 @@ body{
 }
 
 .blogContainer .portrait img{
-	height: 200px;
+	width: 100%;
 	margin-top: 5%;
 	margin-bottom: 5%;
 }
