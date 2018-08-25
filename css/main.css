@@ -130,7 +130,7 @@ body{
     height: 75%;
     top: 48%;
     left: 50%;
-
+	-webkit-overflow-scrolling: touch;
     z-index: 5000;
     transform: translate(-50%,-50%);
     position: absolute;
