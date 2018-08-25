@@ -159,8 +159,8 @@ function phaseOutMainMenu(){
 
 
 		let menu = $('.mainMenu');
-		let xMovement = "146%";
-		let yMovement = "135%";
+		let xMovement = "144%";
+		let yMovement = "130%";
 		let scale = '.5'
 		if(isReducedSize){
 			xMovement= '0%';

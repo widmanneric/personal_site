@@ -127,8 +127,8 @@ body{
 .sidebar{
 	width: 80%;
     left: 0;
-    height: 70%;
-    top: 48.5%;
+    height: 75%;
+    top: 48%;
     left: 50%;
 
     z-index: 5000;
@@ -155,7 +155,7 @@ body{
 
 .scrollArrow{
 	position: absolute;
-	bottom : 12.9%;
+	bottom : 11.1%;
 	transition: transform;
 	transition-duration: 1s;
 
