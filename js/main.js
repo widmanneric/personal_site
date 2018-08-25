@@ -136,6 +136,7 @@ function applyControls(){
 	$('.blogClose').on('click touch',()=>{
 		$('.blogContainer .description.article, .blogContainer .portrait, .blogTitle').fadeOut(200);
 		$('.blogClose').fadeOut(200,()=>$('.blogContainer .codeSection').fadeIn(200));
+		setTimeout(()=>checkArrow($('.blogContainer')),300);
 	});
 
 	
