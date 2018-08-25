@@ -23,6 +23,30 @@ body{
 	overflow-x: hidden;
 
 }
+
+.blogClose{
+	position: absolute;
+	left: 0%;
+	top: 1%;
+	cursor: pointer;
+}
+
+.blogTitle{
+	font-weight: bold;
+	margin-top: 2%;
+	text-align: center;
+
+}
+
+.blogContainer .portrait img{
+	height: 200px;
+	margin-top: 5%;
+	margin-bottom: 5%;
+}
+
+
+
+
 .name{
 	width: 100%;
 	text-align: right;
@@ -32,6 +56,12 @@ body{
 	align-items: center;
 	justify-content: center;
 	/*padding-right: 5%;*/
+}
+
+.customLink{
+	color: -webkit-link;
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .mainMenu{
