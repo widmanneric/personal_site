@@ -316,7 +316,7 @@ function transitionPage(ele){
 	if(isReducedSize){
 		$('.sidebar:not(.mini)').addClass('mini');
 		ele.removeClass('mini');
-		hideBlog();
+		setTimeout(()=>hideBlog(),300);
 		return;
 	}
 
