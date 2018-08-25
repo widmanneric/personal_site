@@ -211,7 +211,7 @@ body{
     	height: 65%;
 	}
 	.scrollArrow{
-		bottom: -500%;
+		opacity: 0;
 		font-size: 16px;
 
 	}
