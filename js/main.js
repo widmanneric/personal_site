@@ -5,8 +5,44 @@ var lockControls = false;
 $(document).ready(()=>{
 	$('.scrollArrow').hide();
 	checkScreenSize();
+	//check for query string 
+	let url = new URL(window.location.href);
+	let page = url.searchParams.get('p');
+	if(page && $(`.${page}`).length > 0)
+		jumpToPage(page);
 	applyControls();
+	setTimeout(()=>$('.mainMenu').fadeIn(500),300);
+	
+
 });
+
+function jumpToPage(page){
+	blockHideBlog = true;
+	if(!isReducedSize){
+		$('.mainMenu').css({
+			transform : 'scale(.5) translate(144%,130%) '
+		});
+	}
+	else{
+		$('.mainMenu').css({
+			transform : 'scale(.7) translatY(130%)'
+		});
+	}
+
+	let block = $('.block').eq(2);
+	block.closest('.option').addClass('blocklock');
+	animateOption(block);
+	transitionPage($('.blogContainer'));
+	let target = $(`.customLink[target=${page}]`);
+	console.log(target);
+	$('.blogContainer .codeSection').hide();
+	$(`.${page}`).show();
+	$('.blogClose').show();
+	setTimeout(()=>blockHideBlog=false,1000);
+
+
+}
+
 
 var showTimeout;
 function checkArrow(ele){
@@ -53,7 +89,7 @@ function applyControls(){
 	});	
 
 	$('.option').on('click touch',function(){
-
+		window.history.replaceState("", "", "/");
 		if($(this).hasClass('lock') || $(this).hasClass('blocklock') || lockControls)
 			return;
 
@@ -125,7 +161,7 @@ function applyControls(){
 
 	$('.customLink').on('click touch',function(){
 		let target = $(this).attr('target');
-
+		window.history.replaceState("", "", `/?p=${target}`);
 		$('.blogContainer .codeSection').fadeOut(200,()=>{
 			$(`.${target}`).fadeIn(200)
 			$('.blogClose').fadeIn(200);
@@ -134,6 +170,7 @@ function applyControls(){
 	})
 
 	$('.blogClose').on('click touch',()=>{
+		window.history.replaceState("", "", "/");
 		$('.blogContainer .description.article, .blogContainer .portrait, .blogTitle').fadeOut(200);
 		$('.blogClose').fadeOut(200,()=>$('.blogContainer .codeSection').fadeIn(200));
 		setTimeout(()=>checkArrow($('.blogContainer')),300);
@@ -311,6 +348,7 @@ function animateOption(ele){
 
 
 function transitionPage(ele){
+	console.log(ele);
 	ele.scrollTop(0);
 	let duration = 1000;
 	// lockControls = true;
@@ -323,6 +361,11 @@ function transitionPage(ele){
 
 	$('.scrollArrow').fadeOut();
 	new Promise((res,rej)=>{
+		if($('.sidebar:not(.mini)').length==0){
+			res();
+			return;
+		}
+
 		$('.sidebar:not(.mini)').velocity({
 			left : '-50%'
 		},{	
@@ -333,7 +376,6 @@ function transitionPage(ele){
 	})
 	.then(()=>{
 		checkArrow(ele);
-		// lockControls = false;
 
 
 		let oldele = $('.sidebar:not(.mini)');
@@ -348,8 +390,10 @@ function transitionPage(ele){
 	})
 }
 
-
+var blockHideBlog = false;
 function hideBlog(){
+	if(blockHideBlog)
+		return;
 	$('.blogContainer .description.article, .blogContainer .portrait, .blogTitle').hide();
 	$('.blogContainer .codeSection').show();
 	$('.blogClose').hide();
