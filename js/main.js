@@ -11,7 +11,7 @@ $(document).ready(()=>{
 	if(page && $(`.${page}`).length > 0)
 		jumpToPage(page);
 	applyControls();
-	setTimeout(()=>$('.mainMenu').fadeIn(500),300);
+	setTimeout(()=>$('.mainMenu').fadeIn(500),200);
 	
 
 });
@@ -24,8 +24,9 @@ function jumpToPage(page){
 		});
 	}
 	else{
+		console.log('alternative move');
 		$('.mainMenu').css({
-			transform : 'scale(.7) translatY(130%)'
+			transform : 'scale(.7) translateY(75%)'
 		});
 	}
 
