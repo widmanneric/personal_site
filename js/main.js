@@ -1,6 +1,7 @@
 var resizeTimeout;
 var isReducedSize = false;
 var lockControls = false;
+var lockMusic = false;
 
 $(document).ready(()=>{
 	$('.scrollArrow').hide();
@@ -24,7 +25,6 @@ function jumpToPage(page){
 		});
 	}
 	else{
-		console.log('alternative move');
 		$('.mainMenu').css({
 			transform : 'scale(.7) translateY(75%)'
 		});
@@ -71,8 +71,10 @@ function checkScreenSize(){
 
 
 function applyControls(){
-	// let optionsLocked = false;
+	let optionsLocked = false;
+	
 
+	$('.waveTarget').off('mouseenter');
 	$('.waveTarget').on('mouseenter',async function(){
 	
 		if($(this).hasClass('lock') || isReducedSize)
@@ -85,11 +87,15 @@ function applyControls(){
 		
 	});
 
+	$('.waveTarget').off('click touch');
 	$('.waveTarget').on('click touch',function(){
 		$(this).mouseleave();
 	});	
 
-	$('.option').on('click touch',function(){
+	$('.option:not(.music)').off('click touch');
+	$('.option:not(.music)').on('click touch',function(){
+		$('.music').hide();
+		lockMusic = true;
 		window.history.replaceState("", "", "/");
 		if($(this).hasClass('lock') || $(this).hasClass('blocklock') || lockControls)
 			return;
@@ -109,7 +115,7 @@ function applyControls(){
 		}
 	});
 
-	$('.option').on('click touch',function(){
+	$('.option:not(.music)').on('click touch',function(){
 		if($(this).hasClass('blocklock') || lockControls)
 			return;
 		$('.blocklock').addClass('unanimateTarget');
@@ -124,26 +130,19 @@ function applyControls(){
 				animateOption(block);
 			},2800,$(this).find('.block'));
 		}
-		else{
+		else
 			animateOption($(this).find('.block'));
-			// lockControls = true;
-		}
-		
-		// .then()
-
-		// }
 	});
 
 	
 
-
-	//let scrollHeights = calculateScrollHeights();
+	$('.sidebar').off('scroll');
 	$('.sidebar').on('scroll',function(e){
 		let ele = $(this);
 		checkArrow(ele);
 	});
 
-
+	$(window).off('resize');
 	$(window).on('resize',(ev)=>{
 		clearTimeout(resizeTimeout);
 		checkScreenSize();
@@ -160,6 +159,7 @@ function applyControls(){
 	
 	});
 
+	$('.customLink').off('click touch');
 	$('.customLink').on('click touch',function(){
 		let target = $(this).attr('target');
 		window.history.replaceState("", "", `/?p=${target}`);
@@ -170,6 +170,7 @@ function applyControls(){
 		});
 	})
 
+	$('.blogClose').off('click touch');
 	$('.blogClose').on('click touch',()=>{
 		window.history.replaceState("", "", "/");
 		$('.blogContainer .description.article, .blogContainer .portrait, .blogTitle').fadeOut(200);
@@ -177,7 +178,23 @@ function applyControls(){
 		setTimeout(()=>checkArrow($('.blogContainer')),300);
 	});
 
-	
+	$('body').off('keypress');
+	$('body').on('keypress',(ev)=>{
+		if(ev.which == 109 && $('.music:visible').length==0 && !lockMusic){
+			$('.music').fadeIn(500);
+			$('body').off('keypress');
+		}
+		else{
+			$('body').off('keypress');
+		}
+		
+	});	
+	$('.music').off('click touch');
+	$('.music').on('click touch',()=>{
+		console.log(window.open);
+		let win = window.open("https://soundcloud.com/ericwidmann", '_blank');
+  		win.focus();
+	});
 }
 
 
