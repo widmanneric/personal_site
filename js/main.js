@@ -162,6 +162,7 @@ function applyControls(){
 	$('.customLink').off('click touch');
 	$('.customLink').on('click touch',function(){
 		let target = $(this).attr('target');
+		console.log(target);
 		window.history.replaceState("", "", `/?p=${target}`);
 		$('.blogContainer .codeSection').fadeOut(200,()=>{
 			$(`.${target}`).fadeIn(200)

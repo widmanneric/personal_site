@@ -50,7 +50,7 @@ body{
 
 .name{
 	width: 100%;
-	text-align: right;
+	text-align: center;
 	font-size: 15px;
 	height: 10%;
 	display: flex;
@@ -201,12 +201,12 @@ body{
 		font-size: 25px;
 	}
 	.name{
-		font-size: 12px;
+		font-size: 14px;
 		text-align: center;
 		justify-content: center;
 	}
 	.description{
-		font-size: 12px;
+		font-size: 14px;
 	}
 	.sidebar{
 		top: 45%;
