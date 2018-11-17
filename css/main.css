@@ -237,12 +237,17 @@ body{
 	.name{
 		opacity: 0;
 	}
+	.miniMenu{
+		opacity: 0;
+		pointer-events: none;
+	}
+}
+
+@media only screen and (max-height: 650px){
 	.scrollArrow{
 		opacity: 0;
 	}
-	.miniMenu{
-		opacity: 0;
-	}
+
 }
 
 
