@@ -222,7 +222,7 @@ function phaseOutMainMenu(){
 		let scale = '.5'
 		if(isReducedSize){
 			xMovement= '0%';
-			yMovement="87%";
+			yMovement="82%";
 			scale = '.7';
 		} 
 		
