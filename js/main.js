@@ -242,6 +242,7 @@ function phaseOutMainMenu(){
 			duration : duration,
 			complete : ()=>{
 				applyControls();
+				$('.mainMenu').addClass('miniMenu');
 				lockControls = false;
 				resolve();
 			}

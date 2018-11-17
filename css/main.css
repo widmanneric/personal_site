@@ -75,6 +75,7 @@ body{
 	flex-direction: column;
 	height: 72%;
 	font-size: 30px;
+	transition: opacity 500ms;
 }
 
 
@@ -223,6 +224,18 @@ body{
 	/*	position: absolute;
 		top: 50%;
 		transform : translateY(-50%);*/
+	}
+}
+
+@media only screen and (max-height: 520px){
+	.name{
+		opacity: 0;
+	}
+	.scrollArrow{
+		opacity: 0;
+	}
+	.miniMenu{
+		opacity: 0;
 	}
 }
 
