@@ -194,7 +194,10 @@ body{
 	margin-bottom: 5%;
 }
 
-
+.sidebar.reduced{
+	top: 45%;
+	height: 70%
+}
 
 @media only screen and (max-width : 450px){
 	.block{

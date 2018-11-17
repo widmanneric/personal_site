@@ -64,8 +64,10 @@ function checkArrow(ele){
 
 function checkScreenSize(){
 	let w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-	if(w <= 450)
+	if(w <= 450){
 		isReducedSize = true;
+		$('.sidebar').addClass('reduced');
+	}
 
 }
 
@@ -220,7 +222,7 @@ function phaseOutMainMenu(){
 		let scale = '.5'
 		if(isReducedSize){
 			xMovement= '0%';
-			yMovement="100%";
+			yMovement="87%";
 			scale = '.7';
 		} 
 		
