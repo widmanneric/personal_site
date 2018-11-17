@@ -194,6 +194,8 @@ body{
 	margin-bottom: 5%;
 }
 
+
+
 @media only screen and (max-width : 450px){
 	.block{
 		will-change : width;
@@ -209,9 +211,10 @@ body{
 	.description{
 		font-size: 14px;
 	}
-	.sidebar{
-		top: 45%;
-    	height: 65%;
+
+
+	.codeSection{
+		max-width: 100%;
 	}
 	.scrollArrow{
 		opacity: 0;
