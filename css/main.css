@@ -199,6 +199,13 @@ body{
 	height: 70%
 }
 
+
+.description img{
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
 @media only screen and (max-width : 450px){
 	.block{
 		will-change : width;
