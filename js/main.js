@@ -3,6 +3,15 @@ var isReducedSize = false;
 var lockControls = false;
 var lockMusic = false;
 
+
+window.addEventListener("load",function() {
+    setTimeout(function(){
+        // This hides the address bar:
+        window.scrollTo(0, 1);
+    }, 0);
+});
+
+
 $(document).ready(()=>{
 	$('.scrollArrow').hide();
 	checkScreenSize();
@@ -14,6 +23,8 @@ $(document).ready(()=>{
 	applyControls();
 	setTimeout(()=>$('.mainMenu').fadeIn(500),200);
 	
+
+
 
 });
 
@@ -198,6 +209,9 @@ function applyControls(){
 		let win = window.open("https://soundcloud.com/ericwidmann", '_blank');
   		win.focus();
 	});
+
+
+
 }
 
 
