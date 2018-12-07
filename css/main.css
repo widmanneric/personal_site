@@ -190,7 +190,7 @@ body{
 	text-align: center;
 }
 
-.codeContainer .codeSection:last-of-type{
+.codeSection:last-of-type{
 	margin-bottom: 5%;
 }
 
