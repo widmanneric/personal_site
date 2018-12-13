@@ -190,11 +190,15 @@ body{
 	text-align: center;
 }
 
-.blogContainer .codeSection:last-of-type ,.codeContainer .codeSection:last-of-type{
+.codeContainer .codeSection:last-of-type{
 	margin-bottom: 5%;
 }
 
-.
+.blogContainer .last{
+    margin-bottom: 5%;
+}
+
+
 
 .sidebar.reduced{
 	top: 48%;
