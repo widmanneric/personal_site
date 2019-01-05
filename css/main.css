@@ -246,7 +246,7 @@ body{
 	}
 }
 
-@media only screen and (max-height: 600px){
+@media only screen and (max-height: 400px){
 	.name{
 		opacity: 0;
 	}
