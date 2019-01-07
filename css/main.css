@@ -75,9 +75,13 @@ body{
 	flex-direction: column;
 	height: 72%;
 	font-size: 30px;
+	opacity: 0;
 	transition: opacity 500ms;
 }
 
+.initFadeInMainMenu{
+	opacity: 1;
+}
 
 
 .option{

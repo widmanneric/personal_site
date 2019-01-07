@@ -21,7 +21,8 @@ $(document).ready(()=>{
 	if(page && $(`.${page}`).length > 0)
 		jumpToPage(page);
 	applyControls();
-	setTimeout(()=>$('.mainMenu').fadeIn(500),200);
+	$('.mainMenu').show();
+	setTimeout(()=>$('.mainMenu').addClass('initFadeInMainMenu'),500);
 	
 
 
@@ -162,6 +163,8 @@ function applyControls(){
 		resizeTimeout = setTimeout(()=>{
 			console.log('resizeend');
 			let ele = $('.sidebar:not(.mini)');
+			if(!ele[0].scrollTopMax)
+				return;
 
 			if(ele[0].scrollTopMax<=20)
 				$('.scrollArrow').fadeOut();
