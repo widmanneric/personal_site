@@ -224,6 +224,11 @@ body{
 	transform: translateX(-50%);
 }
 
+
+.article{
+	width: 100%;
+}
+
 @media only screen and (max-width : 450px){
 	.block{
 		will-change : width;
@@ -257,9 +262,6 @@ body{
 		transform : translateY(-50%);*/
 	}
 
-	.article{
-		width: 100%;
-	}
 
 }
 
