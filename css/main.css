@@ -227,6 +227,7 @@ body{
 
 .article{
 	width: 100%;
+	line-height: 40px;
 }
 
 @media only screen and (max-width : 450px){
