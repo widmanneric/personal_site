@@ -38,7 +38,7 @@ function jumpToPage(page){
 	}
 	else{
 		$('.mainMenu').css({
-			transform : 'scale(.7) translateY(75%)'
+			transform : 'scale(.7) translateY(100%)'
 		});
 	}
 
@@ -108,7 +108,7 @@ function applyControls(){
 
 	$('.option:not(.music)').off('click touch');
 	$('.option:not(.music)').on('click touch',function(){
-		$('.music').hide();
+		//$('.music').hide();
 		lockMusic = true;
 		window.history.replaceState("", "", "/");
 		if($(this).hasClass('lock') || $(this).hasClass('blocklock') || lockControls)
@@ -239,7 +239,7 @@ function phaseOutMainMenu(){
 		let scale = '.5'
 		if(isReducedSize){
 			xMovement= '0%';
-			yMovement="82%";
+			yMovement="100%";
 			scale = '.7';
 		} 
 		

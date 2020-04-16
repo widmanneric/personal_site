@@ -38,6 +38,10 @@ body{
 
 }
 
+.customPixelArt{
+	max-width: 400px;
+}
+
 .blogContainer .portrait img{
 	height: 200px;
 	max-width: 100%;
