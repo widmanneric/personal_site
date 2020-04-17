@@ -209,7 +209,7 @@ function applyControls(){
 	$('.music').off('click touch');
 	$('.music').on('click touch',()=>{
 		console.log(window.open);
-		let win = window.open("https://soundcloud.com/ericwidmann", '_blank');
+		let win = window.open("https://soundcloud.com/guttergunk", '_blank');
   		win.focus();
 	});
 
