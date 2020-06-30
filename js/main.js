@@ -12,6 +12,8 @@ window.addEventListener("load",function() {
 });
 
 
+
+
 $(document).ready(()=>{
 	$('.scrollArrow').hide();
 	checkScreenSize();
@@ -26,8 +28,9 @@ $(document).ready(()=>{
 	
 
 
-
 });
+
+
 
 function jumpToPage(page){
 	blockHideBlog = true;
@@ -41,7 +44,7 @@ function jumpToPage(page){
 			transform : 'scale(.7) translateY(100%)'
 		});
 	}
-
+	
 	let block = $('.block').eq(2);
 	block.closest('.option').addClass('blocklock');
 	animateOption(block);
@@ -231,7 +234,8 @@ function phaseOutMainMenu(){
 	$('.control').off('mouseenter click touch');
 	// lockControls = true;
 	return new Promise((resolve,reject)=>{
-
+		$('.spinnerImg').fadeOut(2000)
+	
 
 		let menu = $('.mainMenu');
 		let xMovement = "144%";

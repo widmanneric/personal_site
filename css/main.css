@@ -9,8 +9,20 @@ body{
 	overflow-x: hidden;
 	overflow-y: hidden;
 	font-family: 'Roboto Mono', monospace;
-	background: #faf0e6;
+	animation: bgChange 60s infinite;
+	animation-direction: alternate;
+
 }
+.spinnerImg{
+	height: 300px;
+	position: relative;
+	bottom: -12%;
+	animation: spin 5s infinite;
+	animation-direction: normal;
+	animation-timing-function: linear;
+}
+
+
 .mainContainer{
 	width : 100%;
 	height: 100%;
@@ -21,6 +33,9 @@ body{
 	justify-content: flex-start;
 	overflow-y: scroll;
 	overflow-x: hidden;
+	animation: skew 10s infinite;
+	animation-timing-function: ease-in-out;
+	animation-direction: alternate;
 
 }
 
@@ -155,7 +170,7 @@ body{
     position: absolute;
     transition: transform;
 	transition-duration: 500ms;
-	background: #faf0e6a3;
+	background: transparent;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -294,3 +309,34 @@ body{
 }
 
 
+
+
+
+@keyframes skew {
+	0% {
+	  transform: skew(3deg, 3deg);
+	}
+	100% {
+	  transform: skew(-3deg, -3deg);
+	}
+  }
+
+  @keyframes spin {
+	0% {
+	  transform: rotateY(0deg);
+	}
+	100% {
+	  transform: rotateY(360deg);
+	}
+  }
+
+
+  @keyframes bgChange {
+	0% {
+		background : #a4c291;
+	}
+	100%{
+		background : #c291c2;
+	}
+  }
+  
