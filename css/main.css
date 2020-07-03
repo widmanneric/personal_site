@@ -17,11 +17,28 @@ body{
 	height: 300px;
 	position: relative;
 	bottom: -12%;
-	animation: spin 5s infinite;
+	animation: spin 20s infinite;
 	animation-direction: normal;
 	animation-timing-function: linear;
 }
 
+.floatImg1{
+	position: absolute;
+	height: 150px;
+	animation-direction: reverse !important;
+	animation-duration: 18s !important;
+	left: 20%;
+	top: 60%;
+	z-index: 2000;
+}
+
+.floatImg2{
+	position: absolute;
+	height: 150px;
+	right: 20%;
+	top: 80%;
+	z-index: 2000;
+}
 
 .mainContainer{
 	width : 100%;
