@@ -34,6 +34,7 @@ $(document).ready(()=>{
 
 function jumpToPage(page){
 	blockHideBlog = true;
+	$('.spinnerImg').hide()
 	if(!isReducedSize){
 		$('.mainMenu').css({
 			transform : 'scale(.5) translate(144%,130%) '
