@@ -50,7 +50,7 @@ body{
 	justify-content: flex-start;
 	overflow-y: scroll;
 	overflow-x: hidden;
-	animation: skew 10s infinite;
+	animation: skew 20s infinite;
 	animation-timing-function: ease-in-out;
 	animation-direction: alternate;
 
@@ -331,10 +331,10 @@ body{
 
 @keyframes skew {
 	0% {
-	  transform: skew(3deg, 3deg);
+	  transform: skew(2deg, 2deg);
 	}
 	100% {
-	  transform: skew(-3deg, -3deg);
+	  transform: skew(-2deg, -2deg);
 	}
   }
 
