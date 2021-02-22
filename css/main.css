@@ -50,9 +50,9 @@ body{
 	justify-content: flex-start;
 	overflow-y: scroll;
 	overflow-x: hidden;
-	animation: skew 20s infinite;
+/*	animation: skew 20s infinite;
 	animation-timing-function: ease-in-out;
-	animation-direction: alternate;
+	animation-direction: alternate;*/
 
 }
 
